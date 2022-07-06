@@ -1,6 +1,6 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="376.8,931.2" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="686,2589" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
-    <sco:Collection x:TypeArguments="x:String">
+    <scg:List x:TypeArguments="x:String" Capacity="46">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -22,10 +22,14 @@
       <x:String>UiPath.Core</x:String>
       <x:String>UiPath.Core.Activities</x:String>
       <x:String>System.Windows.Markup</x:String>
-    </sco:Collection>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+    </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <sco:Collection x:TypeArguments="AssemblyReference">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="20">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -44,11 +48,15 @@
       <AssemblyReference>System.ServiceModel</AssemblyReference>
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>UiPath.Mail</AssemblyReference>
-    </sco:Collection>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Create a dictionary with key= country name and value = List of cities. Add a new city for US &amp; write all the cities from US. Remove a city from the list for UK &amp; write all the cities from UK. " DisplayName="Dictionary Demo 2" sap:VirtualizedContainerService.HintSize="336.8,851.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Create a dictionary with key= country name and value = List of cities. Add a new city for US &amp; write all the cities from US. Remove a city from the list for UK &amp; write all the cities from UK. " DisplayName="Dictionary Demo 2" sap:VirtualizedContainerService.HintSize="705,2857" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:Dictionary(x:String, scg:List(x:String))" Name="cities" />
+      <Variable x:TypeArguments="x:Boolean" Name="NewDelhi" />
+      <Variable x:TypeArguments="x:Boolean" Name="Dongla" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -56,7 +64,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign DisplayName="New dictionary" sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign DisplayName="New dictionary" sap:VirtualizedContainerService.HintSize="663,60" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="scg:Dictionary(x:String, scg:List(x:String))">[cities]</OutArgument>
       </Assign.To>
@@ -64,7 +72,7 @@
         <InArgument x:TypeArguments="scg:Dictionary(x:String, scg:List(x:String))">[new Dictionary(of String, List(Of String))]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign DisplayName="Assign US" sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+    <Assign DisplayName="Assign US" sap:VirtualizedContainerService.HintSize="663,60" sap2010:WorkflowViewState.IdRef="Assign_2">
       <Assign.To>
         <OutArgument x:TypeArguments="scg:List(x:String)">[cities("US")]</OutArgument>
       </Assign.To>
@@ -72,17 +80,68 @@
         <InArgument x:TypeArguments="scg:List(x:String)">[new List(of String) from {"New York", "Chicago", "Seattle","San Francisco"}]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign DisplayName="Assign UK" sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+    <Assign DisplayName="Assign UK" sap:VirtualizedContainerService.HintSize="663,60" sap2010:WorkflowViewState.IdRef="Assign_4">
       <Assign.To>
         <OutArgument x:TypeArguments="scg:List(x:String)">[cities("UK")]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="scg:List(x:String)">[new List(of String) from {"London", "Manchester", "Bristol","Edinburgh"}]</InArgument>
+        <InArgument x:TypeArguments="scg:List(x:String)">[new List(of String) from {"Manchester", "Chester", "London", "Edinburgh","Bristol"}]</InArgument>
       </Assign.Value>
     </Assign>
-    <AddToCollection x:TypeArguments="x:String" Collection="[cities(&quot;US&quot;)]" DisplayName="Add To Collection" sap:VirtualizedContainerService.HintSize="314.4,22.4" sap2010:WorkflowViewState.IdRef="AddToCollection`1_1" Item="Portland" />
-    <RemoveFromCollection x:TypeArguments="x:String" Collection="[cities(&quot;UK&quot;)]" DisplayName="Remove From Collection" sap:VirtualizedContainerService.HintSize="314.4,22.4" sap2010:WorkflowViewState.IdRef="RemoveFromCollection`1_1" Item="London" />
-    <ui:LogMessage DisplayName="Log Message US" sap:VirtualizedContainerService.HintSize="314.4,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;US Cities : &quot;+ String.Join(&quot;, &quot;,cities(&quot;US&quot;))]" />
-    <ui:LogMessage DisplayName="Log Message UK" sap:VirtualizedContainerService.HintSize="314.4,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;UK Cities : &quot;+ String.Join(&quot;, &quot;,cities(&quot;UK&quot;))]" />
+    <Assign DisplayName="Assign Sudan" sap:VirtualizedContainerService.HintSize="663,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+      <Assign.To>
+        <OutArgument x:TypeArguments="scg:List(x:String)">[cities("Sudan")]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="scg:List(x:String)">[new List(of String) from {"Port Sudan", "El Jeneina", "Madani","Juba"}]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Assign India" sap:VirtualizedContainerService.HintSize="663,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+      <Assign.To>
+        <OutArgument x:TypeArguments="scg:List(x:String)">[cities("India")]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="scg:List(x:String)">[new List(of String) from {"New Delhi", "Hyderabad", "Mumbai", "Bengaluru"}]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="663,91" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Info" Message="[&quot;Before editing cities..............................................................................&quot;]" />
+    <ui:LogMessage DisplayName="Log Message US" sap:VirtualizedContainerService.HintSize="663,91" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;US Cities : &quot;+ String.Join(&quot;, &quot;,cities(&quot;US&quot;))]" />
+    <ui:LogMessage DisplayName="Log Message UK" sap:VirtualizedContainerService.HintSize="663,91" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;UK Cities : &quot;+ String.Join(&quot;, &quot;,cities(&quot;UK&quot;))]" />
+    <ui:LogMessage DisplayName="Log Message Sudan" sap:VirtualizedContainerService.HintSize="663,91" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;Sudan Cities : &quot;+ String.Join(&quot;, &quot;,cities(&quot;Sudan&quot;))]" />
+    <ui:LogMessage DisplayName="Log Message India" sap:VirtualizedContainerService.HintSize="663,91" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;India Cities : &quot;+ String.Join(&quot;, &quot;,cities(&quot;India&quot;))]" />
+    <AddToCollection x:TypeArguments="x:String" Collection="[cities(&quot;US&quot;)]" DisplayName="Add To Collection" sap:VirtualizedContainerService.HintSize="663,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_1" Item="Portland" />
+    <RemoveFromCollection x:TypeArguments="x:String" Collection="[cities(&quot;UK&quot;)]" DisplayName="Remove From Collection" sap:VirtualizedContainerService.HintSize="663,22" sap2010:WorkflowViewState.IdRef="RemoveFromCollection`1_1" Item="London" />
+    <ExistsInCollection x:TypeArguments="x:String" Collection="[cities(&quot;India&quot;)]" DisplayName="Exists In Collection" sap:VirtualizedContainerService.HintSize="663,22" sap2010:WorkflowViewState.IdRef="ExistsInCollection`1_2" Item="New Delhi" Result="[NewDelhi]" />
+    <ExistsInCollection x:TypeArguments="x:String" Collection="[cities(&quot;Sudan&quot;)]" DisplayName="Exists In Collection" sap:VirtualizedContainerService.HintSize="663,22" sap2010:WorkflowViewState.IdRef="ExistsInCollection`1_3" Item="Dongla" Result="[Dongla]" />
+    <ui:LogMessage DisplayName="Log Message If New Dehli Exists" sap:VirtualizedContainerService.HintSize="663,91" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[&quot;New Delhi exists? &quot; + NewDelhi.ToString]" />
+    <ui:LogMessage DisplayName="Log Message If Dongla Exists" sap:VirtualizedContainerService.HintSize="663,91" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Info" Message="[&quot;Does Dongla exists? &quot; + Dongla.ToString]" />
+    <If Condition="[Dongla]" sap:VirtualizedContainerService.HintSize="663,341" sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Then>
+        <Sequence sap:VirtualizedContainerService.HintSize="376,183" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="Info" Message="[&quot;Yes Dongla does exists in Sudan cities.&quot;]" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence sap:VirtualizedContainerService.HintSize="242,114" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <AddToCollection x:TypeArguments="x:String" Collection="[cities(&quot;Sudan&quot;)]" DisplayName="Add To Collection" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_2" Item="Dongla" />
+        </Sequence>
+      </If.Else>
+    </If>
+    <ClearCollection x:TypeArguments="x:String" Collection="[cities(&quot;India&quot;)]" DisplayName="Clear Collection" sap:VirtualizedContainerService.HintSize="663,22" sap2010:WorkflowViewState.IdRef="ClearCollection`1_2" />
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="663,91" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="Info" Message="[&quot;After editing cities..............................................................................&quot;]" />
+    <ui:LogMessage DisplayName="Log Message US" sap:VirtualizedContainerService.HintSize="663,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;US Cities : &quot;+ String.Join(&quot;, &quot;,cities(&quot;US&quot;))]" />
+    <ui:LogMessage DisplayName="Log Message UK" sap:VirtualizedContainerService.HintSize="663,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;UK Cities : &quot;+ String.Join(&quot;, &quot;,cities(&quot;UK&quot;))]" />
+    <ui:LogMessage DisplayName="Log Message Sudan" sap:VirtualizedContainerService.HintSize="663,91" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;Sudan Cities : &quot;+ String.Join(&quot;, &quot;,cities(&quot;Sudan&quot;))]" />
+    <ui:LogMessage DisplayName="Log Message India" sap:VirtualizedContainerService.HintSize="663,91" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[&quot;India Cities : &quot;+ String.Join(&quot;, &quot;,cities(&quot;India&quot;))]" />
   </Sequence>
 </Activity>
